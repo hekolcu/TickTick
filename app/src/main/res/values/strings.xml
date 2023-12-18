@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">TickTick</string>
+
+    <string name="iv_menu_content_description">Menu Button</string>
+    <string name="iv_more_description">More Options Button</string>
+    <string name="tv_inbox_name_default">Inbox</string>
 </resources>
