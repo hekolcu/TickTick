@@ -2,4 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="background_color">#1D1B20</color>
+    <color name="dialog_box_bg_color">#2B2930</color>
+    <color name="item_recycler_view_bg_color">#36343B</color>
+    <color name="item_bg_color">#000000</color>
 </resources>
