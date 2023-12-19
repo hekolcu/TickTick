@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tasksMainLayout"
-    style="@style/Theme.TickTick"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -33,7 +32,6 @@
             android:id="@+id/tv_inbox_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0"
             android:text="@string/tv_inbox_name_default"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -52,4 +50,9 @@
             app:tint="@android:color/white"
             tools:srcCompat="@drawable/baseline_more_horiz" />
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </LinearLayout>
