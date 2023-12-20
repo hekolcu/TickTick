@@ -75,7 +75,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:src="@tools:sample/avatars"
                 app:srcCompat="@drawable/calendar" />
 
             <ImageView
@@ -84,7 +83,6 @@
                 android:layout_height="24dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:src="@tools:sample/avatars"
                 app:srcCompat="@drawable/ok_btn" />
 
         </LinearLayout>
