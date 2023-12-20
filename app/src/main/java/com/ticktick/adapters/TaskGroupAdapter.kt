@@ -28,7 +28,7 @@ class TaskGroupAdapter(
         val date = groupedTasksMap.keys.toList()[position]
         groupedTasksViewHolder.header.text = date.toString()
 
-        groupedTasksViewHolder.tasksListView.adapter
+        groupedTasksViewHolder.tasksListView.adapter = TaskListAdapter(context, groupedTasksMap[date]!!)
     }
 
     override fun getItemCount() = groupedTasksMap.keys.size

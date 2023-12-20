@@ -19,7 +19,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/iv_menu_content_description"
-            android:src="@tools:sample/avatars"
             app:tint="@android:color/white"
             tools:srcCompat="@drawable/baseline_menu" />
 
@@ -46,12 +45,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/iv_more_description"
-            android:src="@tools:sample/avatars"
             app:tint="@android:color/white"
             tools:srcCompat="@drawable/baseline_more_horiz" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_taskGroup"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
