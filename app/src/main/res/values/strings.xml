@@ -3,8 +3,10 @@
 
     <string name="iv_menu_content_description">Menu Button</string>
     <string name="iv_more_description">More Options Button</string>
-
     <string name="tv_inbox_name_default">Inbox</string>
     <string name="tv_task_title_default">TASK_TITLE</string>
     <string name="tv_task_description_default">TASK_DESCRIPTION</string>
+    <string name="tv_create_task_activity">What would you Like to do</string>
+    <string name="tv_create_task_description">Description</string>
+    <string name="tv_create_task_category">Category</string>
 </resources>
