@@ -20,10 +20,11 @@
             android:layout_height="wrap_content"
             android:padding="10dp" />
 
-        <ListView
-            android:id="@+id/lv_tasks"
+        <LinearLayout
+            android:id="@+id/ll_tasks"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/item_bg_color" />
+            android:background="@color/item_bg_color"
+            android:orientation="vertical" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

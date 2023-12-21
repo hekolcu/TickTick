@@ -20,6 +20,7 @@ class TasksActivity : AppCompatActivity() {
         tasks.add(Task("MY Second TASK", "Hello", Date(2023, 12, 15, 0, 0, 0)))
         tasks.add(Task("MY Third TASK", "Hello", Date(2023, 12, 15, 0, 0, 0)))
         tasks.add(Task("MY Fourth TASK", "Hello", Date(2023, 12, 15, 0, 0, 0)))
+
         tasks.add(Task("askjdlas", "Hello", Date(2023, 12, 15, 1, 0, 0)))
         tasks.add(Task("asjdkas", "Hello", Date(2023, 12, 15, 1, 0, 0)))
         val tasksGroupedByDate = tasks.groupBy { it.dueDate }
