@@ -14,7 +14,6 @@ import com.ticktick.databinding.ActivityUserBinding
 import com.ticktick.model.User
 import com.ticktick.retrofit.ApiClient
 import com.ticktick.util.ApiService
-import com.ticktick.util.Utils
 
 class UserActivity : AppCompatActivity() {
     lateinit var binding: ActivityUserBinding
@@ -53,10 +52,10 @@ class UserActivity : AppCompatActivity() {
     private fun updateUserUI(user: User) {
         binding.username.text = user.user_name
 
-        val profilePhotoUrl = Utils.Utils.baseUrlForImage + user.profile_photo
+        val profilePhotoUrl = user.profile_photo
         Picasso.get()
             .load(profilePhotoUrl)
-            .resize(100, 100)
+            .resize(700, 700)
             .centerCrop()
             .error(R.drawable.ic_launcher_background)
             .into(binding.profilePhoto)
