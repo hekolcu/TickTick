@@ -17,10 +17,9 @@
         <ImageView
             android:id="@+id/iv_menu"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:contentDescription="@string/iv_menu_content_description"
-            app:tint="@android:color/white"
-            tools:srcCompat="@drawable/baseline_menu" />
+            app:srcCompat="@drawable/baseline_menu" />
 
         <View
             android:layout_width="0dp"
@@ -45,8 +44,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/iv_more_description"
-            app:tint="@android:color/white"
-            tools:srcCompat="@drawable/baseline_more_horiz" />
+            app:srcCompat="@drawable/baseline_more_horiz"
+            app:tint="@android:color/white" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
