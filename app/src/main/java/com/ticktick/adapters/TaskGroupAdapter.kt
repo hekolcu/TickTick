@@ -9,11 +9,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ticktick.R
 import com.ticktick.model.Task
-import java.util.Date
 
 class TaskGroupAdapter(
     private val context: Context,
-    private val groupedTasksMap: Map<Date, List<Task>>
+    private val groupedTasksMap: Map<String, List<Task>>
 ): RecyclerView.Adapter<TaskGroupAdapter.GroupedTasksViewHolder>() {
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): GroupedTasksViewHolder {
         val itemView = LayoutInflater.from(context).inflate(
@@ -26,7 +25,7 @@ class TaskGroupAdapter(
 
     override fun onBindViewHolder(groupedTasksViewHolder: GroupedTasksViewHolder, position: Int) {
         val date = groupedTasksMap.keys.toList()[position]
-        groupedTasksViewHolder.header.text = date.toString()
+        groupedTasksViewHolder.header.text = date
 
         for (task in groupedTasksMap[date]!!) {
             val itemView = LayoutInflater.from(context).inflate(
