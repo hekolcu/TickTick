@@ -68,14 +68,17 @@
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/crtTaskFloatActBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:clickable="true"
+        android:src="@drawable/fab"
+        app:backgroundTint="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="@+id/tasksMainLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/calendar" />
+        app:maxImageSize="@dimen/design_fab_image_size"
+        app:srcCompat="@drawable/fab" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
