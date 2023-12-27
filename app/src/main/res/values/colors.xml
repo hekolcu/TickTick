@@ -2,7 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-
+    <color name="landing_bg_color">#1C0030</color>
     <color name="background_color">#1D1B20</color>
     <color name="dialog_box_bg_color">#2B2930</color>
     <color name="item_recycler_view_bg_color">#36343B</color>

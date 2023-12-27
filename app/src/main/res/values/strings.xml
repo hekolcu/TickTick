@@ -11,4 +11,5 @@
     <string name="tv_create_task_description">Description</string>
     <string name="tv_create_task_category">Category</string>
     <string name="addTaskButtonDescription">Add Task Button</string>
+    <string name="btn_landing">Let\'s Create Task</string>
 </resources>
