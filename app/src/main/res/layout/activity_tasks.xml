@@ -59,122 +59,120 @@
                 app:tint="@android:color/white" />
         </LinearLayout>
 
-        <!-- Sol menü -->
-        <LinearLayout
-            android:forceDarkAllowed="true"
-            android:id="@+id/leftMenu"
-            android:layout_width="200dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:background="black"
-            android:orientation="vertical"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <!-- Menü öğeleri buraya eklenecek -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="40dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/list_item_image_add"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/baseline_add_24"></ImageView>
-
-                <TextView
-                    android:id="@+id/list_item_title1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/add"
-                    android:textColor="@color/white"></TextView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/list_item_image_calendar"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/calendar"></ImageView>
-
-                <TextView
-                    android:id="@+id/list_item_title2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/today"
-                    android:textColor="@color/white"></TextView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/list_item_image3"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/baseline_menu_24"></ImageView>
-
-                <TextView
-                    android:id="@+id/list_item_image_menu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/inbox"
-                    android:textColor="@color/white"></TextView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="300dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/list_item_image4"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/baseline_account_circle_24"></ImageView>
-
-                <TextView
-                    android:id="@+id/list_item_title4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/user_name"
-                    android:textColor="@color/white"></TextView>
-
-                <ImageView
-                    android:id="@+id/list_item_settings"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:src="@drawable/baseline_settings_24"></ImageView>
-            </LinearLayout>
-
-        </LinearLayout>
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_taskGroup"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_height="match_parent">
 
         </androidx.recyclerview.widget.RecyclerView>
+
+        <!-- Sol menü -->
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/leftMenu"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/background_color"
+        android:forceDarkAllowed="true"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        tools:layout_editor_absoluteY="731dp">
+
+        <!-- Menü öğeleri buraya eklenecek -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="40dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/list_item_image_add"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/baseline_add_24"></ImageView>
+
+            <TextView
+                android:id="@+id/list_item_title1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/add"
+                android:textColor="@color/white"></TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/list_item_image_calendar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/calendar"></ImageView>
+
+            <TextView
+                android:id="@+id/list_item_title2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/today"
+                android:textColor="@color/white"></TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/list_item_image3"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/baseline_menu_24"></ImageView>
+
+            <TextView
+                android:id="@+id/list_item_image_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/inbox"
+                android:textColor="@color/white"></TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="300dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/list_item_image4"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/baseline_account_circle_24"></ImageView>
+
+            <TextView
+                android:id="@+id/list_item_title4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/user_name"
+                android:textColor="@color/white"></TextView>
+
+            <ImageView
+                android:id="@+id/list_item_settings"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/baseline_settings_24"></ImageView>
+        </LinearLayout>
 
     </LinearLayout>
 
