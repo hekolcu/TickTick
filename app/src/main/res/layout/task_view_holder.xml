@@ -16,6 +16,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/item_bg_color"
+            android:backgroundTint="@color/item_bg_color"
             android:padding="5dp">
 
             <LinearLayout
@@ -28,12 +30,14 @@
                     android:id="@+id/tv_taskTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
                     android:text="@string/tv_task_title_default" />
 
                 <TextView
                     android:id="@+id/tv_taskDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
                     android:text="@string/tv_task_description_default" />
             </LinearLayout>
 

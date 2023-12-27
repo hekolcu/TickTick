@@ -6,7 +6,7 @@
     <color name="background_color">#1D1B20</color>
     <color name="dialog_box_bg_color">#2B2930</color>
     <color name="item_recycler_view_bg_color">#36343B</color>
-    <color name="item_bg_color">#000000</color>
+    <color name="item_bg_color">#141218</color>
     <color name="text_hint_color">#E6E0E9</color>
     <color name="icon_color">#D0BCFF</color>
 
