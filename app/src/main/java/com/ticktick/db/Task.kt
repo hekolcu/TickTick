@@ -9,9 +9,9 @@ class Task(
     var name:String,
     var desc:String,
     var date:String,
-    @PrimaryKey
-    var id:Int=0
 ) {
+    @PrimaryKey(autoGenerate = true)
+    var id:Int = 0
     override fun toString(): String {
         return "Task name='$name',date=$date, desc='$desc', id=$id)"
     }

@@ -1,7 +1,9 @@
 package com.ticktick
 
+import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ticktick.adapters.TaskGroupAdapter
 import com.ticktick.databinding.ActivityTasksBinding
@@ -11,20 +13,27 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 import androidx.lifecycle.ViewModelProvider
-
+import com.ticktick.databinding.CreateTaskDialogBinding
 
 class TasksActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTasksBinding
     private lateinit var adapter: TaskGroupAdapter
+    private lateinit var createTaskDialog: Dialog
+    private lateinit var tvm: TaskViewModel
+    private lateinit var dateFormat: SimpleDateFormat
+    private lateinit var createTaskSelectedDate: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTasksBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val tvm = ViewModelProvider(this)[TaskViewModel::class.java]
+        dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+        createTaskSelectedDate = dateFormat.format(Calendar.getInstance().time)
+
+        tvm = ViewModelProvider(this)[TaskViewModel::class.java]
 
         tvm.readAllTaskData.observe(this) {
-            val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+            Log.d("task list", it.size.toString())
             val today = Calendar.getInstance()
             val tomorrow = Calendar.getInstance().apply { add(Calendar.DAY_OF_YEAR, 1) }
 
@@ -38,10 +47,11 @@ class TasksActivity : AppCompatActivity() {
                     else -> dateFormat.format(taskDate.time)
                 }
             }
+            Log.d("grouped_tasks Today", tasksGroupedByDateRef["Today"]?.size.toString())
+            Log.d("grouped_tasks Tomorrow", tasksGroupedByDateRef["Tomorrow"]?.size.toString())
+            Log.d("grouped_tasks Past", tasksGroupedByDateRef["Past"]?.size.toString())
             adapter.setData(tasksGroupedByDateRef)
         }
-
-        tvm.addTask(Task("my task", "description", "2023-12-27"))
 
         val layoutManager = LinearLayoutManager(this@TasksActivity)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
@@ -49,5 +59,35 @@ class TasksActivity : AppCompatActivity() {
 
         adapter = TaskGroupAdapter(this@TasksActivity)
         binding.rvTaskGroup.adapter = adapter
+
+        binding.crtTaskFloatActBtn.setOnClickListener {
+            createAddTaskDialog()
+        }
+    }
+
+    private fun createAddTaskDialog() {
+        createTaskDialog = Dialog(this)
+
+        val createTaskDialogBinding = CreateTaskDialogBinding.inflate(layoutInflater)
+        createTaskDialog.setContentView(createTaskDialogBinding.root)
+
+        createTaskDialogBinding.okBtn.setOnClickListener {
+            Log.d("date", createTaskSelectedDate)
+            tvm.addTask(Task(
+                createTaskDialogBinding.tvName.text.toString(),
+                createTaskDialogBinding.mLineDescTextView.text.toString(),
+                createTaskSelectedDate
+            ))
+            createTaskDialog.dismiss()
+        }
+
+        createTaskDialogBinding.calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
+            val calendar = Calendar.getInstance()
+            calendar.set(year, month, dayOfMonth)
+
+            createTaskSelectedDate = dateFormat.format(calendar.time)
+        }
+
+        createTaskDialog.show()
     }
 }
