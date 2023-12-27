@@ -12,4 +12,8 @@
     <string name="tv_create_task_category">Category</string>
     <string name="addTaskButtonDescription">Add Task Button</string>
     <string name="btn_landing">Let\'s Create Task</string>
+    <string name="add">Add New List</string>
+    <string name="today">Today</string>
+    <string name="inbox">Inbox</string>
+    <string name="user_name">User Mock</string>
 </resources>
