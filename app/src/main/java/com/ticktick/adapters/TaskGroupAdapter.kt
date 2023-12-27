@@ -8,12 +8,16 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ticktick.R
-import com.ticktick.model.Task
+import com.ticktick.db.Task
 
 class TaskGroupAdapter(
-    private val context: Context,
-    private val groupedTasksMap: Map<String, List<Task>>
+    private val context: Context
 ): RecyclerView.Adapter<TaskGroupAdapter.GroupedTasksViewHolder>() {
+    private var groupedTasksMap: Map<String, List<Task>> = mapOf()
+    fun setData(items: Map<String, List<Task>>){
+        groupedTasksMap = items
+        notifyDataSetChanged()
+    }
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): GroupedTasksViewHolder {
         val itemView = LayoutInflater.from(context).inflate(
             R.layout.grouped_tasks_view_holder,
@@ -35,7 +39,7 @@ class TaskGroupAdapter(
             )
             val taskViewHolder = TaskViewHolder(itemView)
             taskViewHolder.title.text = task.name
-            taskViewHolder.description.text = task.description
+            taskViewHolder.description.text = task.desc
             groupedTasksViewHolder.tasksLinearLayout.addView(itemView)
         }
     }

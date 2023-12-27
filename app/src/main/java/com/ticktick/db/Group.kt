@@ -7,11 +7,11 @@ import com.ticktick.util.Constants
 @Entity(tableName = Constants.TABLENAME_GROUP)
 class Group(
     var title:String,
-    var user_id:Int,
+    var userId:Int,
     @PrimaryKey
-    var group_id:Int
+    var groupId:Int
 ) {
     override fun toString(): String {
-        return "title$title\nuser_id=$user_id\ngroup_id=$group_id"
+        return "title$title\nuser_id=$userId\ngroup_id=$groupId"
     }
 }

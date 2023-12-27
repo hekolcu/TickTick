@@ -21,10 +21,10 @@ interface GroupDAO {
     fun deleteAllGroups()
 
 
-    @Query("SELECT * FROM ${Constants.TABLENAME_GROUP} ORDER BY group_id ASC")
+    @Query("SELECT * FROM ${Constants.TABLENAME_GROUP} ORDER BY groupId ASC")
     fun getAllGroups(): LiveData<List<Group>>
 
-    @Query("SELECT * FROM ${Constants.TABLENAME_GROUP} WHERE group_id =:id")
+    @Query("SELECT * FROM ${Constants.TABLENAME_GROUP} WHERE groupId =:id")
     fun getGroupById(id:Int):Group
 
     @Query("SELECT * FROM ${Constants.TABLENAME_GROUP} WHERE title LIKE :searchKey")

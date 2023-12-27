@@ -12,7 +12,7 @@ exportSchema: to have a version of history of your schema in your caode base, it
  */
 @Database(
     entities = [Task::class, Group::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class TaskRoomDatabase : RoomDatabase() {
@@ -33,7 +33,9 @@ abstract class TaskRoomDatabase : RoomDatabase() {
             same database instance will be used. If many instance are used, it will be so expensive
              */
             synchronized(this){
-                val  instance =Room.databaseBuilder(context.applicationContext, TaskRoomDatabase::class.java, Constants.DATABASENAME).build()
+                val  instance =Room.databaseBuilder(context.applicationContext, TaskRoomDatabase::class.java, Constants.DATABASENAME)
+                    .fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 return instance
             }

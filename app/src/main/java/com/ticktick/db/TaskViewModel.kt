@@ -12,42 +12,42 @@ import kotlinx.coroutines.launch
 it provides data to the UI and survive configuration changes. It acts as a communication center between repository and the UI
  */
 class TaskViewModel(application:Application):AndroidViewModel(application) {
-    val readAllData: LiveData<List<Task>>
-    private val repository:TaskRepository
+    val readAllTaskData: LiveData<List<Task>>
+    val taskRepository:TaskRepository
 
-    val readAllData2: LiveData<List<Group>>
-    private val repository2:GroupRepository
+    val readAllGroupData: LiveData<List<Group>>
+    val groupRepository:GroupRepository
     init {
         val taskDAO= TaskRoomDatabase.getDatabase(application).taskDao()
-        repository = TaskRepository(taskDAO)
-        readAllData = repository.readAlldata
+        taskRepository = TaskRepository(taskDAO)
+        readAllTaskData = taskRepository.readAlldata
 
         val groupDAO= TaskRoomDatabase.getDatabase(application).groupDao()
-        repository2 = GroupRepository(groupDAO)
-        readAllData2 = repository2.readAlldata
+        groupRepository = GroupRepository(groupDAO)
+        readAllGroupData = groupRepository.readAlldata
     }
 
 
     fun addTask(task:Task){
         viewModelScope.launch(Dispatchers.IO){ // that code will be run in background thread, coroutine scope
-            repository.insertTask(task)
+            taskRepository.insertTask(task)
         }
     }
     fun addTasks(tasks: List<Task>){
         viewModelScope.launch(Dispatchers.IO) { // that code will be run in background thread, coroutine scope
             tasks.forEach{
-                repository.insertTask(it)
+                taskRepository.insertTask(it)
             }
         }
     }
     fun deleteTask(task:Task){
         viewModelScope.launch(Dispatchers.IO){ // that code will be run in background thread, coroutine scope
-            repository.deleteTask(task)
+            taskRepository.deleteTask(task)
         }
     }
     fun deleteAllTask(){
         viewModelScope.launch(Dispatchers.IO){ // that code will be run in background thread, coroutine scope
-            repository.deleteAllTasks()
+            taskRepository.deleteAllTasks()
         }
     }
 //    fun updateTask(task:Task){
@@ -56,31 +56,31 @@ class TaskViewModel(application:Application):AndroidViewModel(application) {
 //        }
 //    }
     fun searchTask(searchkey:String):LiveData<List<Task>>{
-            return repository.getTasksBySearchKey(searchkey).asLiveData()
+            return taskRepository.getTasksBySearchKey(searchkey).asLiveData()
     }
 
 //Group
 
     fun addGroup(group:Group){
         viewModelScope.launch(Dispatchers.IO){ // that code will be run in background thread, coroutine scope
-            repository2.insertGroup(group)
+            groupRepository.insertGroup(group)
         }
     }
     fun addGroups(groups: List<Group>){
         viewModelScope.launch(Dispatchers.IO) { // that code will be run in background thread, coroutine scope
             groups.forEach{
-                repository2.insertGroup(it)
+                groupRepository.insertGroup(it)
             }
         }
     }
     fun deleteGroup(group: Group){
         viewModelScope.launch(Dispatchers.IO){ // that code will be run in background thread, coroutine scope
-            repository2.deleteGroup(group)
+            groupRepository.deleteGroup(group)
         }
     }
     fun deleteAllGroup(){
         viewModelScope.launch(Dispatchers.IO){ // that code will be run in background thread, coroutine scope
-            repository2.deleteAllGroups()
+            groupRepository.deleteAllGroups()
         }
     }
     //    fun updateTask(task:Task){
@@ -89,7 +89,7 @@ class TaskViewModel(application:Application):AndroidViewModel(application) {
 //        }
 //    }
     fun searchGroup(searchkey:String):LiveData<List<Group>>{
-        return repository2.getGroupsBySearchKey(searchkey).asLiveData()
+        return groupRepository.getGroupsBySearchKey(searchkey).asLiveData()
     }
 
 

@@ -6,7 +6,6 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.ticktick.model.User
 import com.ticktick.util.Constants
 import kotlinx.coroutines.flow.Flow
 
@@ -22,10 +21,10 @@ interface TaskDAO {
     fun deleteAllTasks()
 
 
-    @Query("SELECT * FROM ${Constants.TABLENAME} ORDER BY id ASC")
+    @Query("SELECT * FROM ${Constants.TABLENAME}")
     fun getAllTasks(): LiveData<List<Task>>
 
-    @Query("SELECT * FROM ${Constants.TABLENAME} WHERE id =:id")
+    @Query("SELECT * FROM ${Constants.TABLENAME} WHERE id = :id")
     fun getTaskById(id:Int):Task
 
     @Query("SELECT * FROM ${Constants.TABLENAME} WHERE name LIKE :searchKey")
