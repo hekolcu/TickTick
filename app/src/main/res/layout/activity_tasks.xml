@@ -84,17 +84,15 @@
                     android:id="@+id/list_item_image1"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/baseline_add_24">
-                </ImageView>
+                    android:src="@drawable/baseline_add_24"></ImageView>
 
                 <TextView
                     android:id="@+id/list_item_title1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:textColor="@color/black"
-                    android:text="@string/add">
-                </TextView>
+                    android:text="@string/add"
+                    android:textColor="@color/black"></TextView>
             </LinearLayout>
 
             <LinearLayout
@@ -107,17 +105,15 @@
                     android:id="@+id/list_item_image2"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/baseline_calendar_today_24">
-                </ImageView>
+                    android:src="@drawable/baseline_calendar_today_24"></ImageView>
 
                 <TextView
                     android:id="@+id/list_item_title2"
-                    android:textColor="@color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="@string/today">
-                </TextView>
+                    android:text="@string/today"
+                    android:textColor="@color/black"></TextView>
             </LinearLayout>
 
             <LinearLayout
@@ -129,17 +125,15 @@
                     android:id="@+id/list_item_image3"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/baseline_menu_24">
-                </ImageView>
+                    android:src="@drawable/baseline_menu_24"></ImageView>
 
                 <TextView
                     android:id="@+id/list_item_title3"
-                    android:textColor="@color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="@string/inbox">
-                </TextView>
+                    android:text="@string/inbox"
+                    android:textColor="@color/black"></TextView>
             </LinearLayout>
 
             <LinearLayout
@@ -152,26 +146,23 @@
                     android:id="@+id/list_item_image4"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/baseline_account_circle_24">
-                </ImageView>
+                    android:src="@drawable/baseline_account_circle_24"></ImageView>
 
                 <TextView
                     android:id="@+id/list_item_title4"
-                    android:textColor="@color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="@string/user_name">
-                </TextView>
+                    android:text="@string/user_name"
+                    android:textColor="@color/black"></TextView>
 
                 <ImageView
                     android:id="@+id/list_item_settings"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="20dp"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/baseline_settings_24">
-                </ImageView>
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/baseline_settings_24"></ImageView>
             </LinearLayout>
 
         </LinearLayout>

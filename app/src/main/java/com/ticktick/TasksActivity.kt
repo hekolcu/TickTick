@@ -5,9 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ticktick.adapters.TaskGroupAdapter
 import com.ticktick.databinding.ActivityTasksBinding
@@ -68,11 +65,8 @@ class TasksActivity : AppCompatActivity() {
             createAddTaskDialog()
         }
 
-        val openMenuButton: ImageView = findViewById(R.id.iv_menu)
-        val leftMenu: LinearLayout = findViewById(R.id.leftMenu)
-
-        openMenuButton.setOnClickListener {
-            toggleLeftMenu(leftMenu)
+        binding.ivMenu.setOnClickListener {
+            toggleLeftMenu(binding.leftMenu)
         }
     }
 
