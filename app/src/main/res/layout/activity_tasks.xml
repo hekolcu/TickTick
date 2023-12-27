@@ -60,7 +60,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_taskGroup"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1">
 
         </androidx.recyclerview.widget.RecyclerView>
@@ -74,11 +74,11 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:clickable="true"
+        android:contentDescription="@string/addTaskButtonDescription"
         android:src="@drawable/fab"
         app:backgroundTint="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="@+id/tasksMainLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:maxImageSize="@dimen/design_fab_image_size"
-        app:srcCompat="@drawable/fab" />
+        app:maxImageSize="@dimen/design_fab_image_size" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

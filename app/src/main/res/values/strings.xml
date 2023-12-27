@@ -10,4 +10,5 @@
     <string name="tv_create_list">Create New List</string>
     <string name="tv_create_task_description">Description</string>
     <string name="tv_create_task_category">Category</string>
+    <string name="addTaskButtonDescription">Add Task Button</string>
 </resources>
