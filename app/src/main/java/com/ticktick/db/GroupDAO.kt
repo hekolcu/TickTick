@@ -17,17 +17,17 @@ interface GroupDAO {
     @Delete
     fun deleteGroup(group:Group)
 
-    @Query("DELETE FROM ${Constants.TABLENAME}")
+    @Query("DELETE FROM ${Constants.TABLENAME_GROUP}")
     fun deleteAllGroups()
 
 
-    @Query("SELECT * FROM ${Constants.TABLENAME} ORDER BY id ASC")
+    @Query("SELECT * FROM ${Constants.TABLENAME_GROUP} ORDER BY group_id ASC")
     fun getAllGroups(): LiveData<List<Group>>
 
-    @Query("SELECT * FROM ${Constants.TABLENAME} WHERE id =:id")
+    @Query("SELECT * FROM ${Constants.TABLENAME_GROUP} WHERE group_id =:id")
     fun getGroupById(id:Int):Group
 
-    @Query("SELECT * FROM ${Constants.TABLENAME} WHERE name LIKE :searchKey")
+    @Query("SELECT * FROM ${Constants.TABLENAME_GROUP} WHERE title LIKE :searchKey")
     fun getGroupsBySearchKey(searchKey:String): Flow<List<Group>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
