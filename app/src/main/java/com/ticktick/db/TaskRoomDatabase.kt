@@ -11,12 +11,13 @@ If you change anything on the database like adding a field to table, chnaging ty
 exportSchema: to have a version of history of your schema in your caode base, it is not required so assigned as false
  */
 @Database(
-    entities = [Task::class],
+    entities = [Task::class, Group::class],
     version = 1,
     exportSchema = false
 )
 abstract class TaskRoomDatabase : RoomDatabase() {
     abstract fun taskDao(): TaskDAO
+    abstract fun groupDao():GroupDAO
 
     companion object{
         @Volatile  //it makes that instance to visible to other threads
