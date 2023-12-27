@@ -10,34 +10,36 @@
 
   <ImageView
       android:id="@+id/profile_photo"
-      android:layout_width="8dp"
-      android:layout_height="4dp"
+      android:layout_width="312dp"
+      android:layout_height="304dp"
       android:layout_alignParentLeft="true"
       android:layout_alignParentTop="true"
       android:layout_alignParentRight="true"
       android:layout_alignParentBottom="true"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.505"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.199"
       tools:srcCompat="@tools:sample/avatars" />
 
   <TextView
       android:id="@+id/username"
-      android:layout_width="0dp"
-      android:layout_height="30dp"
+      android:layout_width="227dp"
+      android:layout_height="64dp"
       android:layout_marginTop="272dp"
       android:fontFamily="@font/roboto"
       android:gravity="center_vertical"
       android:letterSpacing="0.02"
       android:lineHeight="30sp"
       android:lineSpacingExtra="2sp"
-      android:textColor="#66E6E0"
+      android:textColor="#9BA1A1"
       android:textSize="24sp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="1.0"
+      app:layout_constraintHorizontal_bias="0.733"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="@+id/profile_photo"
-      app:layout_constraintVertical_bias="0.0" />
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.405" />
 </androidx.constraintlayout.widget.ConstraintLayout>
