@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -54,5 +55,24 @@ dependencies {
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
 
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    val room_version = "2.6.0"
+//room components
+    implementation("androidx.room:room-runtime:$room_version")
+    kapt ("androidx.room:room-compiler:$room_version")
+    implementation ("androidx.room:room-ktx:$room_version")
+    androidTestImplementation ("androidx.room:room-testing:$room_version")
+
+    // Lifecycle components
+    implementation( "androidx.lifecycle:lifecycle-extensions:2.2.0")
+    implementation( "androidx.lifecycle:lifecycle-common-java8:2.2.0")
+    implementation( "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2..0")
+
+    // Kotlin components
+    implementation( "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.72")
+    api ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5")
+    api ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.5")
+
 
 }
