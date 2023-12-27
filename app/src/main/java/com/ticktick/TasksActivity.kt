@@ -1,6 +1,7 @@
 package com.ticktick
 
 import android.app.Dialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -52,6 +53,12 @@ class TasksActivity : AppCompatActivity() {
             Log.d("grouped_tasks Tomorrow", tasksGroupedByDateRef["Tomorrow"]?.size.toString())
             Log.d("grouped_tasks Past", tasksGroupedByDateRef["Past"]?.size.toString())
             adapter.setData(tasksGroupedByDateRef)
+
+            binding.listItemTitle4.setOnClickListener {
+                val intent = Intent(this, UserActivity::class.java)
+
+                startActivity(intent)
+            }
         }
 
         val layoutManager = LinearLayoutManager(this@TasksActivity)
@@ -77,6 +84,7 @@ class TasksActivity : AppCompatActivity() {
             leftMenu.visibility = View.VISIBLE
         }
     }
+
 
     private fun createAddTaskDialog() {
         createTaskDialog = Dialog(this)
