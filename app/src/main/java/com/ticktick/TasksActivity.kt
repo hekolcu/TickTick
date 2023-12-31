@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ticktick.adapters.TaskGroupAdapter
 import com.ticktick.databinding.ActivityTasksBinding
@@ -132,16 +133,22 @@ class TasksActivity : AppCompatActivity() {
         }
 
         createTaskDialogBinding.okBtn.setOnClickListener {
+            val taskName = createTaskDialogBinding.tvName.text.toString().trim()
+            val descName = createTaskDialogBinding.mLineDescTextView.text.toString().trim()
             // Retrieve the selected group
             val selectedGroup = createTaskDialogBinding.spinnerGroups.selectedItem as Group
-            // Use the selected group's ID for the new task
-            tvm.addTask(Task(
-                createTaskDialogBinding.tvName.text.toString(),
-                createTaskDialogBinding.mLineDescTextView.text.toString(),
-                createTaskSelectedDate,
-                selectedGroup.groupId
-            ))
-            createTaskDialog.dismiss()
+            if(taskName.isNotEmpty() && descName.isNotEmpty()){
+                // Use the selected group's ID for the new task
+                tvm.addTask(Task(
+                    taskName,
+                    descName,
+                    createTaskSelectedDate,
+                    selectedGroup.groupId
+                ))
+                createTaskDialog.dismiss()
+            }else{
+                Toast.makeText(this, "Fill the necessary areas !!", Toast.LENGTH_SHORT).show()
+            }
         }
 
         createTaskDialogBinding.calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
@@ -150,7 +157,7 @@ class TasksActivity : AppCompatActivity() {
 
             createTaskSelectedDate = dateFormat.format(calendar.time)
         }
-
+        createTaskDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         createTaskDialog.show()
     }
 
@@ -161,12 +168,17 @@ class TasksActivity : AppCompatActivity() {
         createGroupDialog.setContentView(createListDialogBinding.root)
 
         createListDialogBinding.createListOkBtn.setOnClickListener {
-            Group(createListDialogBinding.createListTextView.text.toString(), 0).also {
-                tvm.addGroup(it)
+            val listName = createListDialogBinding.createListTextView.text.toString().trim()
+            if(listName.isNotEmpty()){
+                Group(listName, 0).also {
+                    tvm.addGroup(it)
+                }
+                createGroupDialog.dismiss()
+            }else{
+                Toast.makeText(this, "Fill the necessary areas !!", Toast.LENGTH_SHORT).show()
             }
-            createGroupDialog.dismiss()
         }
-
+        createGroupDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         createGroupDialog.show()
     }
 }
