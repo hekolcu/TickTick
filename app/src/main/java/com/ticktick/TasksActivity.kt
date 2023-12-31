@@ -17,10 +17,21 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 import androidx.lifecycle.ViewModelProvider
+import androidx.work.Constraints
+import androidx.work.NetworkType
+import androidx.work.OneTimeWorkRequest
+import androidx.work.WorkInfo
+import androidx.work.WorkManager
+import com.google.gson.Gson
+import com.squareup.picasso.Picasso
 import com.ticktick.adapters.GroupListAdapter
+import com.ticktick.backgroundservice.CustomWorker
 import com.ticktick.databinding.CreateListDialogBinding
 import com.ticktick.databinding.CreateTaskDialogBinding
 import com.ticktick.db.Group
+import com.ticktick.model.User
+import com.ticktick.retrofit.ApiClient
+import com.ticktick.util.ApiService
 
 class TasksActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTasksBinding
@@ -32,12 +43,38 @@ class TasksActivity : AppCompatActivity() {
     private lateinit var dateFormat: SimpleDateFormat
     private lateinit var createTaskSelectedDate: String
     private lateinit var currentGroup: Group
+    private lateinit var apiService: ApiService
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTasksBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         Log.d("currentGroup", "HI")
+
+        apiService = ApiClient.getClient().create(ApiService::class.java)
+
+        val workManager = WorkManager.getInstance(applicationContext)
+
+        val request = OneTimeWorkRequest.Builder(CustomWorker::class.java)
+            .setConstraints(
+                Constraints.Builder()
+                    .setRequiredNetworkType(NetworkType.CONNECTED)
+                    .build()
+            )
+            .build()
+
+        workManager.enqueue(request)
+
+        workManager.getWorkInfoByIdLiveData(request.id)
+            .observe(this) { workInfo ->
+                if (workInfo != null && workInfo.state == WorkInfo.State.SUCCEEDED) {
+                    val jsonUser = workInfo.outputData.getString("json_user")
+                    if (jsonUser != null) {
+                        val user = Gson().fromJson(jsonUser, User::class.java)
+                        updateUserUI(user)
+                    }
+                }
+            }
 
         currentGroup = intent.getParcelableExtra("defaultInbox", Group::class.java)!!
 
@@ -106,6 +143,8 @@ class TasksActivity : AppCompatActivity() {
         binding.llAddItem.setOnClickListener {
             createAddGroupDialog()
         }
+
+
     }
 
     private fun toggleLeftMenu(leftMenu: View) {
@@ -137,16 +176,18 @@ class TasksActivity : AppCompatActivity() {
             val descName = createTaskDialogBinding.mLineDescTextView.text.toString().trim()
             // Retrieve the selected group
             val selectedGroup = createTaskDialogBinding.spinnerGroups.selectedItem as Group
-            if(taskName.isNotEmpty() && descName.isNotEmpty()){
+            if (taskName.isNotEmpty() && descName.isNotEmpty()) {
                 // Use the selected group's ID for the new task
-                tvm.addTask(Task(
-                    taskName,
-                    descName,
-                    createTaskSelectedDate,
-                    selectedGroup.groupId
-                ))
+                tvm.addTask(
+                    Task(
+                        taskName,
+                        descName,
+                        createTaskSelectedDate,
+                        selectedGroup.groupId
+                    )
+                )
                 createTaskDialog.dismiss()
-            }else{
+            } else {
                 Toast.makeText(this, "Fill the necessary areas !!", Toast.LENGTH_SHORT).show()
             }
         }
@@ -169,16 +210,26 @@ class TasksActivity : AppCompatActivity() {
 
         createListDialogBinding.createListOkBtn.setOnClickListener {
             val listName = createListDialogBinding.createListTextView.text.toString().trim()
-            if(listName.isNotEmpty()){
+            if (listName.isNotEmpty()) {
                 Group(listName, 0).also {
                     tvm.addGroup(it)
                 }
                 createGroupDialog.dismiss()
-            }else{
+            } else {
                 Toast.makeText(this, "Fill the necessary areas !!", Toast.LENGTH_SHORT).show()
             }
         }
         createGroupDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         createGroupDialog.show()
+    }
+
+    private fun updateUserUI(user: User) {
+        val profilePhotoUrl = user.profile_photo
+        Picasso.get()
+            .load(profilePhotoUrl)
+            .resize(50, 50)
+            .centerCrop()
+            .error(R.drawable.ic_launcher_background)
+            .into(binding.listItemImage4)
     }
 }
