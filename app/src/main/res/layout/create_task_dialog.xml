@@ -48,12 +48,19 @@
             android:orientation="horizontal"
             android:padding="5dp">
 
+            <Spinner
+                android:id="@+id/spinner_groups"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_weight="0" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/categoryTV"
                 android:layout_width="150dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
                 android:textColorHint="#66E6E0E9"
+                android:visibility="gone"
                 app:boxStrokeColor="@color/selector"
                 app:boxStrokeWidth="2dp"
                 app:hintTextColor="@color/text_hint_color"

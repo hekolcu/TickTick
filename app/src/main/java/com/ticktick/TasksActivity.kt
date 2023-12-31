@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ticktick.adapters.TaskGroupAdapter
 import com.ticktick.databinding.ActivityTasksBinding
@@ -115,17 +116,29 @@ class TasksActivity : AppCompatActivity() {
 
     private fun createAddTaskDialog() {
         createTaskDialog = Dialog(this)
-
         val createTaskDialogBinding = CreateTaskDialogBinding.inflate(layoutInflater)
         createTaskDialog.setContentView(createTaskDialogBinding.root)
 
+        // Set up the spinner and its adapter
+        val groupsAdapter = ArrayAdapter<Group>(this, android.R.layout.simple_spinner_item)
+        createTaskDialogBinding.spinnerGroups.adapter = groupsAdapter
+
+        // Observe the group data and update the spinner
+        tvm.groupRepository.getAllGroups().observe(this) { groups ->
+            groupsAdapter.clear()
+            groupsAdapter.addAll(groups)
+            groupsAdapter.notifyDataSetChanged()
+        }
+
         createTaskDialogBinding.okBtn.setOnClickListener {
-            Log.d("date", createTaskSelectedDate)
+            // Retrieve the selected group
+            val selectedGroup = createTaskDialogBinding.spinnerGroups.selectedItem as Group
+            // Use the selected group's ID for the new task
             tvm.addTask(Task(
                 createTaskDialogBinding.tvName.text.toString(),
                 createTaskDialogBinding.mLineDescTextView.text.toString(),
                 createTaskSelectedDate,
-                currentGroup.groupId
+                selectedGroup.groupId
             ))
             createTaskDialog.dismiss()
         }

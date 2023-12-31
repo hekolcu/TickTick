@@ -16,4 +16,8 @@ data class Group(
     @IgnoredOnParcel
     @PrimaryKey(autoGenerate = true)
     var groupId: Int = 0
+
+    override fun toString(): String {
+        return title
+    }
 }
