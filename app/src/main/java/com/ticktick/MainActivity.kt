@@ -1,6 +1,7 @@
 package com.ticktick
 
 import android.content.Intent
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -28,8 +29,15 @@ class MainActivity : AppCompatActivity() {
         loadData(tvm)
 
         binding.btnMainAct.setOnClickListener {
+            val mediaPlayer = MediaPlayer.create(this@MainActivity, R.raw.activity_sound)
+            val tasksIntent = Intent(this@MainActivity, TasksActivity::class.java)
+
+            mediaPlayer.start()
+            mediaPlayer.setOnCompletionListener {
+                mediaPlayer.release()
+            }
+
             defaultInbox?.let {
-                val tasksIntent = Intent(this@MainActivity, TasksActivity::class.java)
                 tasksIntent.putExtra("defaultInbox", it)
                 startActivity(tasksIntent)
             } ?: run {
