@@ -57,6 +57,10 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("io.supercharge:shimmerlayout:2.1.0")
 
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
+    implementation ("com.google.android.material:material:1.4.0")
+
+
     val room_version = "2.6.0"
 //room components
     implementation("androidx.room:room-runtime:$room_version")
