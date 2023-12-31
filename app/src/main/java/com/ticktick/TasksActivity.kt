@@ -5,6 +5,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.GestureDetector
+import android.view.MotionEvent
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -44,6 +46,7 @@ class TasksActivity : AppCompatActivity() {
     private lateinit var createTaskSelectedDate: String
     private lateinit var currentGroup: Group
     private lateinit var apiService: ApiService
+    private lateinit var gestureDetector: GestureDetector
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTasksBinding.inflate(layoutInflater)
@@ -63,6 +66,11 @@ class TasksActivity : AppCompatActivity() {
             )
             .build()
 
+        val rootView = findViewById<View>(android.R.id.content)
+        rootView.setOnTouchListener { _, event ->
+            gestureDetector.onTouchEvent(event)
+            true
+        }
         workManager.enqueue(request)
 
         workManager.getWorkInfoByIdLiveData(request.id)
@@ -131,11 +139,6 @@ class TasksActivity : AppCompatActivity() {
             createAddTaskDialog()
         }
 
-        binding.listItemTitle4.setOnClickListener {
-            val userActivityIntent = Intent(this, UserActivity::class.java)
-            startActivity(userActivityIntent)
-        }
-
         binding.ivMenu.setOnClickListener {
             toggleLeftMenu(binding.leftMenu)
         }
@@ -144,7 +147,18 @@ class TasksActivity : AppCompatActivity() {
             createAddGroupDialog()
         }
 
+        gestureDetector = GestureDetector(this, object : GestureDetector.SimpleOnGestureListener() {
+            override fun onDoubleTap(e: MotionEvent): Boolean {
+                val userActivityIntent = Intent(this@TasksActivity, UserActivity::class.java)
+                startActivity(userActivityIntent)
+                return true
+            }
+        })
 
+        binding.listItemTitle4.setOnTouchListener { _, event ->
+            gestureDetector.onTouchEvent(event)
+            true
+        }
     }
 
     private fun toggleLeftMenu(leftMenu: View) {
@@ -224,6 +238,7 @@ class TasksActivity : AppCompatActivity() {
     }
 
     private fun updateUserUI(user: User) {
+        binding.listItemTitle4.text = user.user_name
         val profilePhotoUrl = user.profile_photo
         Picasso.get()
             .load(profilePhotoUrl)
