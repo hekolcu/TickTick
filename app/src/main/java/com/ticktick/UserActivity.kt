@@ -14,14 +14,17 @@ import com.ticktick.databinding.ActivityUserBinding
 import com.ticktick.model.User
 import com.ticktick.retrofit.ApiClient
 import com.ticktick.util.ApiService
+import io.supercharge.shimmerlayout.ShimmerLayout
 
 class UserActivity : AppCompatActivity() {
     lateinit var binding: ActivityUserBinding
     lateinit var apiService: ApiService
+    lateinit var shimmerText : ShimmerLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        shimmerText = findViewById(R.id.shimmer_text)
 
         apiService = ApiClient.getClient().create(ApiService::class.java)
 
@@ -47,6 +50,8 @@ class UserActivity : AppCompatActivity() {
                     }
                 }
             }
+
+        shimmerText.startShimmerAnimation()
     }
 
     private fun updateUserUI(user: User) {

@@ -8,36 +8,55 @@
     android:background="@color/background_color"
     tools:context=".UserActivity">
 
-  <ImageView
-      android:id="@+id/profile_photo"
-      android:layout_width="312dp"
-      android:layout_height="304dp"
-      android:layout_alignParentLeft="true"
-      android:layout_alignParentTop="true"
-      android:layout_alignParentRight="true"
-      android:layout_alignParentBottom="true"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.505"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.199"
-      tools:srcCompat="@tools:sample/avatars" />
+    <ImageView
+        android:id="@+id/profile_photo"
+        android:layout_width="312dp"
+        android:layout_height="304dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.199"
+        tools:srcCompat="@tools:sample/avatars" />
 
-  <TextView
-      android:id="@+id/username"
-      android:layout_width="227dp"
-      android:layout_height="64dp"
-      android:fontFamily="@font/roboto"
-      android:gravity="center_horizontal|center_vertical"
-      android:letterSpacing="0.02"
-      android:lineHeight="30sp"
-      android:lineSpacingExtra="2sp"
-      android:textColor="#9BA1A1"
-      android:textSize="24sp"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/profile_photo"
-      app:layout_constraintVertical_bias="0.309" />
+    <io.supercharge.shimmerlayout.ShimmerLayout
+        android:id="@+id/shimmer_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_photo"
+        app:layout_constraintVertical_bias="0.298"
+        app:shimmer_animation_duration="1500"
+        tools:ignore="MissingConstraints"
+        app:shimmer_auto_start="true">
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="227dp"
+            android:layout_height="64dp"
+            android:fontFamily="@font/roboto"
+            android:gravity="center_horizontal|center_vertical"
+            android:letterSpacing="0.02"
+            android:lineHeight="30sp"
+            android:lineSpacingExtra="2sp"
+            android:textColor="@color/text_hint_color"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_photo"
+            app:layout_constraintVertical_bias="0.309" />
+
+    </io.supercharge.shimmerlayout.ShimmerLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
