@@ -42,6 +42,8 @@ class TasksActivity : AppCompatActivity() {
 
         Log.d("currentGroup", currentGroup.title)
 
+        binding.tvInboxName.text = currentGroup.title
+
         dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
         createTaskSelectedDate = dateFormat.format(Calendar.getInstance().time)
 
@@ -112,7 +114,6 @@ class TasksActivity : AppCompatActivity() {
             leftMenu.visibility = View.VISIBLE
         }
     }
-
 
     private fun createAddTaskDialog() {
         createTaskDialog = Dialog(this)
