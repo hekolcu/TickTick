@@ -25,7 +25,6 @@ class TaskGroupAdapter(
         notifyDataSetChanged()
     }
 
-
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): GroupedTasksViewHolder {
         val itemView = LayoutInflater.from(context).inflate(
             R.layout.grouped_tasks_view_holder,
