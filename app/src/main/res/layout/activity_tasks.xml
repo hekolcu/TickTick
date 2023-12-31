@@ -85,6 +85,7 @@
 
         <!-- Menü öğeleri buraya eklenecek -->
         <LinearLayout
+            android:id="@+id/ll_addItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"

@@ -16,6 +16,7 @@ import java.util.Calendar
 import java.util.Locale
 import androidx.lifecycle.ViewModelProvider
 import com.ticktick.adapters.GroupListAdapter
+import com.ticktick.databinding.CreateListDialogBinding
 import com.ticktick.databinding.CreateTaskDialogBinding
 import com.ticktick.db.Group
 
@@ -24,6 +25,7 @@ class TasksActivity : AppCompatActivity() {
     private lateinit var taskGroupAdapter: TaskGroupAdapter
     private lateinit var groupListAdapter: GroupListAdapter
     private lateinit var createTaskDialog: Dialog
+    private lateinit var createGroupDialog: Dialog
     private lateinit var tvm: TaskViewModel
     private lateinit var dateFormat: SimpleDateFormat
     private lateinit var createTaskSelectedDate: String
@@ -96,6 +98,10 @@ class TasksActivity : AppCompatActivity() {
         binding.ivMenu.setOnClickListener {
             toggleLeftMenu(binding.leftMenu)
         }
+
+        binding.llAddItem.setOnClickListener {
+            createAddGroupDialog()
+        }
     }
 
     private fun toggleLeftMenu(leftMenu: View) {
@@ -132,5 +138,21 @@ class TasksActivity : AppCompatActivity() {
         }
 
         createTaskDialog.show()
+    }
+
+    private fun createAddGroupDialog() {
+        createGroupDialog = Dialog(this)
+
+        val createListDialogBinding = CreateListDialogBinding.inflate(layoutInflater)
+        createGroupDialog.setContentView(createListDialogBinding.root)
+
+        createListDialogBinding.createListOkBtn.setOnClickListener {
+            Group(createListDialogBinding.createListTextView.text.toString(), 0).also {
+                tvm.addGroup(it)
+            }
+            createGroupDialog.dismiss()
+        }
+
+        createGroupDialog.show()
     }
 }
