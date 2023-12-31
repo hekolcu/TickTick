@@ -12,7 +12,7 @@ exportSchema: to have a version of history of your schema in your caode base, it
  */
 @Database(
     entities = [Task::class, Group::class],
-    version = 3,
+    version = 5,
     exportSchema = false
 )
 abstract class TaskRoomDatabase : RoomDatabase() {

@@ -15,24 +15,49 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 import androidx.lifecycle.ViewModelProvider
+import com.ticktick.adapters.GroupListAdapter
 import com.ticktick.databinding.CreateTaskDialogBinding
+import com.ticktick.db.Group
 
 class TasksActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTasksBinding
-    private lateinit var adapter: TaskGroupAdapter
+    private lateinit var taskGroupAdapter: TaskGroupAdapter
+    private lateinit var groupListAdapter: GroupListAdapter
     private lateinit var createTaskDialog: Dialog
     private lateinit var tvm: TaskViewModel
     private lateinit var dateFormat: SimpleDateFormat
     private lateinit var createTaskSelectedDate: String
+    private lateinit var currentGroup: Group
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTasksBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        Log.d("currentGroup", "HI")
+
+        currentGroup = intent.getParcelableExtra("defaultInbox", Group::class.java)!!
+
+        Log.d("currentGroup", currentGroup.title)
+
         dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
         createTaskSelectedDate = dateFormat.format(Calendar.getInstance().time)
 
         tvm = ViewModelProvider(this)[TaskViewModel::class.java]
+
+        val layoutManager = LinearLayoutManager(this@TasksActivity)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        binding.rvTaskGroup.layoutManager = layoutManager
+
+        val layoutManager2 = LinearLayoutManager(this@TasksActivity)
+        layoutManager2.orientation = LinearLayoutManager.VERTICAL
+        binding.rvTaskGroups.layoutManager = layoutManager2
+
+        taskGroupAdapter = TaskGroupAdapter(this@TasksActivity)
+        binding.rvTaskGroup.adapter = taskGroupAdapter
+
+        groupListAdapter = GroupListAdapter(this@TasksActivity)
+        binding.rvTaskGroups.adapter = groupListAdapter
+
 
         tvm.readAllTaskData.observe(this) {
             Log.d("task list", it.size.toString())
@@ -52,24 +77,20 @@ class TasksActivity : AppCompatActivity() {
             Log.d("grouped_tasks Today", tasksGroupedByDateRef["Today"]?.size.toString())
             Log.d("grouped_tasks Tomorrow", tasksGroupedByDateRef["Tomorrow"]?.size.toString())
             Log.d("grouped_tasks Past", tasksGroupedByDateRef["Past"]?.size.toString())
-            adapter.setData(tasksGroupedByDateRef)
-
-            binding.listItemTitle4.setOnClickListener {
-                val intent = Intent(this, UserActivity::class.java)
-
-                startActivity(intent)
-            }
+            taskGroupAdapter.setData(tasksGroupedByDateRef)
         }
 
-        val layoutManager = LinearLayoutManager(this@TasksActivity)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
-        binding.rvTaskGroup.layoutManager = layoutManager
-
-        adapter = TaskGroupAdapter(this@TasksActivity)
-        binding.rvTaskGroup.adapter = adapter
+        tvm.readAllGroupData.observe(this) {
+            groupListAdapter.setData(it)
+        }
 
         binding.crtTaskFloatActBtn.setOnClickListener {
             createAddTaskDialog()
+        }
+
+        binding.listItemTitle4.setOnClickListener {
+            val userActivityIntent = Intent(this, UserActivity::class.java)
+            startActivity(userActivityIntent)
         }
 
         binding.ivMenu.setOnClickListener {
@@ -97,7 +118,8 @@ class TasksActivity : AppCompatActivity() {
             tvm.addTask(Task(
                 createTaskDialogBinding.tvName.text.toString(),
                 createTaskDialogBinding.mLineDescTextView.text.toString(),
-                createTaskSelectedDate
+                createTaskSelectedDate,
+                currentGroup.groupId
             ))
             createTaskDialog.dismiss()
         }

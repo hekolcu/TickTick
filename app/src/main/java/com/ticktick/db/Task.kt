@@ -9,6 +9,7 @@ class Task(
     var name:String,
     var desc:String,
     var date:String,
+    var groupId: Int
 ) {
     @PrimaryKey(autoGenerate = true)
     var id:Int = 0
